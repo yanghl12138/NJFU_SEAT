@@ -1,0 +1,5 @@
+抢座小助手已经帮您抢到座位啦！
+座位是{seat}，时间是{start}到{end}，
+别忘记就坐哦！
+如果想退掉座位，请到图书馆官网退订。
+图书馆官网：https://libic.njfu.edu.cn/clientweb/xcus/ic2/Default.aspx?version=3.00.20181109

@@ -1,0 +1,16 @@
+{
+    "email_settings":{
+        "mail": "<Your Email>",
+        "code": "<Your Authorization Code>",
+        "smtp_url": "smtp.qq.com",
+        "smtp_port": 465,
+        "sendername": "抢座小助手"
+    },
+    "db_settings":{
+        "host": "localhost", 
+        "port": 33061,
+        "user": "root",
+        "pwd": "password",
+        "db": "njfulib"
+    }
+}
