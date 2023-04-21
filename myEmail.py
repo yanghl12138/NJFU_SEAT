@@ -1,5 +1,7 @@
 import smtplib
 from email.mime.text import MIMEText
+from email.header import Header
+import email.utils
 
 '''
 管理发送邮件
@@ -13,16 +15,16 @@ class myEmail:
     def sendMail(self, subject, content, To_addr, sendername=None):
         msg = MIMEText(content)
         if not sendername:
-            msg["From"] = self.addr
+            msg["From"] = Header(self.addr, "utf-8")
         else:
-            msg["From"] = sendername
-        msg["To"] = To_addr
-        msg["Subject"] = subject
+            msg["From"] = email.utils.formataddr((Header(sendername, "utf-8").encode(), self.addr))
+        msg["To"] = Header(To_addr, "utf-8")
+        msg["Subject"] = Header(subject, "utf-8")
         try:
             s = smtplib.SMTP_SSL(self.smtp_url, self.smtp_port)
             s.login(self.addr, self.code)
-            s.sendmail(self.addr, To_addr, msg.as_string())
-        except s.SMTPException as e:
+            s.sendmail(msg['From'], To_addr, msg.as_string())
+        except smtplib.SMTPException as e:
             raise e
         finally:
             s.quit()
