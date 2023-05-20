@@ -6,7 +6,7 @@ from LibSession import *
 from SettingManager import *
 
 '''
-不使用数据库的版本
+使用数据库的版本
 '''
 
 if __name__ == "__main__":
