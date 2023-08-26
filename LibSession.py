@@ -73,20 +73,17 @@ start={start_time}&end={end_time}&start_time=730&end_time=1430&up_file=&memo=&ac
         if ret["ret"] == 1:
             return LibSession(res.cookies)
         else:
-            return None
+            raise Exception(f"Login Fail\nid={id} pwd={pwd}\n{res.text}")
         
 class LibSessionManager:
     sessions = {}
     def get(self, id:str, pwd:str):
-        if id in self.sessions:
-            if self.sessions[id]["pwd"] == pwd:
-                return self.sessions[id]["libsession"]
+        if id in self.sessions and self.sessions[id]["pwd"] == pwd:
+            libsession = self.sessions[id]["libsession"]
         else:
             libsession = LibSession.getLibSession(id, pwd)
-            if libsession:
-                self.sessions[id] = {
-                    "pwd":pwd,
-                    "libsession":libsession
-                }
-                return libsession
-        return None
+            self.sessions[id] = {
+                "pwd":pwd,
+                "libsession":libsession
+            }
+        return libsession
